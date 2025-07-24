@@ -3,6 +3,7 @@ import { auth, db } from "./firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import "./SignupPage.css"; //
+import TermsPage from "./TermsPage";
 
 export default function SignupPage({ navigateToLogin }) {
   const [role, setRole] = useState("");
@@ -17,6 +18,7 @@ export default function SignupPage({ navigateToLogin }) {
     orgType: ""
   });
   const [error, setError] = useState("");
+  const [showTerms, setShowTerms] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -72,88 +74,10 @@ export default function SignupPage({ navigateToLogin }) {
   };
 
   return (
-    // <div className="signup-page">
-    //   <div className="signup-box">
-    //     <h2 className="title">Sign Up</h2>
-    //     {error && <p className="error">{error}</p>}
-
-    //     {/* Role Selection */}
-    //     <div className="role-select">
-    //       <label>
-    //         <input
-    //           type="radio"
-    //           name="role"
-    //           value="user"
-    //           checked={role === "user"}
-    //           onChange={() => setRole("user")}
-    //         />
-    //         User
-    //       </label>
-    //       <label>
-    //         <input
-    //           type="radio"
-    //           name="role"
-    //           value="lander"
-    //           checked={role === "lander"}
-    //           onChange={() => setRole("lander")}
-    //         />
-    //         Lender
-    //       </label>
-    //     </div>
-
-    //     <form onSubmit={handleSignup}>
-    //       {role === "user" && (
-    //         <>
-    //           <input className="input" name="name" placeholder="Name" onChange={handleChange} />
-    //           <input className="input" name="email" type="email" placeholder="Email" onChange={handleChange} />
-    //           <input className="input" name="password" type="password" placeholder="Password" onChange={handleChange} />
-              
-    //           <select className="input" name="country" onChange={handleChange}>
-    //             <option value="India">India</option>
-    //             <option value="Germany">Germany</option>
-    //           </select>
-              
-    //           <select className="input" name="ageGroup" onChange={handleChange}>
-    //             <option value="">Select Age Group</option>
-    //             <option value="18-34">18-34</option>
-    //             <option value="35+">35+</option>
-    //           </select>
-
-    //           <label className="checkbox-label">
-    //             <input
-    //               type="checkbox"
-    //               name="termsAccepted"
-    //               required
-    //               onChange={handleChange}
-    //               style={{ marginRight: '8px' }}
-    //             />
-    //             I agree to share my data to improve credit options, as per the Terms & Conditions.
-    //           </label>
-
-    //         </>
-    //       )}
-
-    //       {role === "lander" && (
-    //         <>
-    //           <input className="input" name="orgName" placeholder="Organization Name" onChange={handleChange} />
-    //           <input className="input" name="email" type="email" placeholder="Email" onChange={handleChange} />
-    //           <input className="input" name="password" type="password" placeholder="Password" onChange={handleChange} />
-    //           <input className="input" name="phone" placeholder="Phone Number" onChange={handleChange} />
-    //           <input className="input" name="orgType" placeholder="Type of Organization" onChange={handleChange} />
-    //         </>
-    //       )}
-
-    //       {role && (
-    //         <button type="submit" className="submit-btn">Signup</button>
-    //       )}
-    //     </form>
-
-    //     <p className="login-link">
-    //       Already have an account?{" "}
-    //       <button onClick={navigateToLogin} className="login-btn">Login</button>
-    //     </p>
-    //   </div>
-    // </div>
+    <>
+    {showTerms ? (
+      <TermsPage onBack={() => setShowTerms(false)} />
+    ) : (
 
     <div className="signup-page">
   {/* Left Section for Logo */}
@@ -206,15 +130,28 @@ export default function SignupPage({ navigateToLogin }) {
             <option value="35+">35+</option>
           </select>
           <label className="checkbox-label">
-            <input
-              type="checkbox"
-              name="termsAccepted"
-              required
-              onChange={handleChange}
-              style={{ marginRight: '8px' }}
-            />
-            I agree to share my data to improve credit options, as per the Terms & Conditions.
-          </label>
+                <input
+                  type="checkbox"
+                  name="termsAccepted"
+                  required
+                  onChange={handleChange}
+                  style={{ marginRight: '8px', marginTop: '2px' }}
+                />
+                <span>
+                  I agree to share my data to improve credit options, as per the{" "}
+                  <span
+                    onClick={() => setShowTerms(true)}
+                    style={{
+                      color: "#003366",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Terms & Conditions
+                  </span>.
+                  </span>
+              </label>
         </>
       )}
 
@@ -239,7 +176,8 @@ export default function SignupPage({ navigateToLogin }) {
     </p>
   </div>
 </div>
-
+)}
+  </>
   );
 }
 
