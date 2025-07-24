@@ -1,11 +1,20 @@
-import Signup from "./Signup";
+// src/App.js
+import React, { useState } from "react";
+import SignupPage from "./SignupPage";
+import LoginPage from "./LoginPage";
+import UserDashboard from "./UserDashboard";
 
-function App() {
+export default function App() {
+  const [page, setPage] = useState("signup");
+  const [userData, setUserData] = useState(null);
+
   return (
     <div>
-      <Signup />
+      {page === "signup" && <SignupPage navigateToLogin={() => setPage("login")} />}
+      {page === "login" && (
+        <LoginPage navigateToDashboard={(data) => { setUserData(data); setPage("dashboard"); }} />
+      )}
+      {page === "dashboard" && <UserDashboard user={userData} />}
     </div>
   );
 }
-
-export default App;
