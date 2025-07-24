@@ -59,9 +59,9 @@
 //   );
 // }
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { auth, db } from "./firebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import "./LoginPage.css";
 
@@ -70,20 +70,50 @@ export default function LoginPage({ navigateToDashboard, navigateToSignup }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // Fetch user data from Firestore
+        const docRefUser = doc(db, "users", user.uid);
+      const docSnapUser = await getDoc(docRefUser);
+     
+      const docRefLender = doc(db, "landers", user.uid);
+      const docSnapLender = await getDoc(docRefLender);
+ 
+        if (docSnapLender.exists()) {
+          navigateToDashboard(docSnapLender.data());
+        }
+        else if (docSnapUser.exists()) {
+          navigateToDashboard(docSnapUser.data());
+        } else {
+          setError("User data not found");
+        }
+      }
+    });
+ 
+    return () => unsubscribe();
+  }, [navigateToDashboard]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!email || !password) return setError("Please fill all fields");
-
+ 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
-      const docRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        navigateToDashboard(docSnap.data());
-      } else {
+ 
+      const docRefUser = doc(db, "users", user.uid);
+      const docSnapUser = await getDoc(docRefUser);
+     
+      const docRefLender = doc(db, "landers", user.uid);
+      const docSnapLender = await getDoc(docRefLender);
+      if (docSnapUser.exists()) {
+        navigateToDashboard(docSnapUser.data());
+      }
+      else if(docSnapLender.exists()){
+        navigateToDashboard(docSnapLender.data());
+      }
+       else {
         setError("User data not found");
       }
     } catch (error) {
