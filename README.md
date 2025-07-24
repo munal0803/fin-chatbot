@@ -6,7 +6,7 @@
 <img width="152" height="334" alt="image" src="https://github.com/user-attachments/assets/7e2a0f91-9738-46ff-98fa-1a257ea2c996" />
 
 
-
+<script>
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -29,4 +29,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-
+</script>
