@@ -22,4 +22,32 @@
 - const app = initializeApp(firebaseConfig);
 - const analytics = getAnalytics(app);
 
+createdAt
+July 24, 2025 at 2:08:29 PM UTC+5:30
+(timestamp)
+
+
+email
+"arms@gmail.com"
+(string)
+
+
+orgName
+"Db"
+(string)
+
+
+orgType
+"NGO"
+(string)
+
+
+phone
+"9479200000"
+(string)
+
+
+role
+"lander"
+
 
