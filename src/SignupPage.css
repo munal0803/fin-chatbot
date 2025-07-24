@@ -1,4 +1,4 @@
-/* SignupPage.css */
+SignupPage.css
 
 body {
   margin: 0;
@@ -16,7 +16,7 @@ body {
 }
 
 .signup-box {
-  background-color: white;
+  background-color: rgb(216, 238, 255);
   padding: 30px;
   border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
@@ -26,7 +26,7 @@ body {
 
 .title {
   text-align: center;
-  color: #0A2647;
+  color: #034fa7;
   margin-bottom: 20px;
 }
 
@@ -59,7 +59,7 @@ body {
 .submit-btn {
   width: 100%;
   padding: 12px;
-  background-color: #0A2647;
+  background-color: #034fa7;
   color: white;
   font-weight: bold;
   border: none;
