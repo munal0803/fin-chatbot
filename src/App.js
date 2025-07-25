@@ -22,7 +22,7 @@
 
 import React, { useState } from "react";
 import SignupPage from "./SignupPage";
-import LoginPage from "./LoginPage";
+import LoginPage from "./Login";
 import UserDashboard from "./UserDashboard";
 import LenderDashboard from "./LenderDashboard"; // Create this component for lenders
  
