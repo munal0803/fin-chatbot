@@ -1,0 +1,152 @@
+/* Login.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: white;
+}
+
+.login-page {
+  display: flex;
+  height: 100vh;
+}
+
+/* Left Side (Logo Display) */
+.login-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #034fa7;
+}
+
+.login-img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+}
+
+/* Right Side (Login Card) */
+.login-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #085cbc,rgb(216, 238, 255));
+  position: relative;
+}
+
+.form-logo {
+  width: 70%;
+  max-width: 230px;
+  height: auto;
+  padding-left: 20%;
+    margin-top: -10px;
+}
+
+
+/* White container box */
+.form-container {
+  background: white;
+  border-radius: 16px;
+  padding: 50px 30px 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 360px;
+  position: relative;
+}
+
+/* Tab Header */
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.active-tab {
+  color: #034fa7;;
+  font-size: 18px;
+  border-bottom: 2px solid #002f65;;
+  cursor: default;
+}
+
+.inactive-tab {
+  color: gray;
+  cursor: pointer;
+}
+
+/* Input Group with Icons */
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 36px 12px 12px;
+  border: none;
+  border-bottom: 1.5px solid #999;
+  font-size: 14px;
+  outline: none;
+  background: transparent;
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  pointer-events: none;
+}
+
+/* Forget Password */
+.forgot-password {
+  text-align: right;
+  font-size: 12px;
+  color: #333;
+  cursor: pointer;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+/* Login Button */
+.styled-login-button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to right, #0056ff, #00c8ff);
+  border: none;
+  border-radius: 24px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+}
+
+.styled-login-button:hover {
+  background: linear-gradient(to right, #003ecb, #00a1cc);
+}
+
+/* Signup Link */
+.signup-link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+.signup-link span {
+  color: #034fa7;;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Error Message */
+.error {
+  color: red;
+  font-size: 13px;
+  margin-bottom: 12px;
+  text-align: center;
+}
